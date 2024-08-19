@@ -1,0 +1,69 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+let mapleader=","
+" imap df <esc>
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+" set relativenumber
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+nmap s <leader><leader>s
+nmap gh 0
+nmap gl $
+" imap s s
+set clipboard+=unnamed
+
+set nokeep-english-in-normal
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+" Multiple-cursors
+Plug 'terryma/vim-multiple-cursors'
+" easymotion
+Plug 'easymotion/vim-easymotion'
+"
+Plug 'preservim/nerdtree'
+"
+Plug 'tpope/vim-surround'
+"
+Plug 'michaeljsmith/vim-indent-object'
+
+" @a: sql -> java
+" before:  createtime datetime not null comment '创建时间',
+" result:  private String createtime;//  datetime not null comment '创建时间',
+let @a = 'Iprivate String <esc>ea;//<esc>j'
+
+" @b: json -> java
+" before: "content": "我是扩展信息",
+" result:  private String content;//:"我是扩展信息",
+let @b = 'Iprivate String <esc>f"xf"xi;//<esc>j'
+
+" @c: json -> java
+" before: "content": "我是扩展信息",
+" result: ("content", "我是扩展信息");
+let @c = 'I(<esc>f:r,$r)a;<esc>j'
+
+" m_store_clerk -> mStoreClerk
+let @x = 'f_x~<esc>j'
+
+" /update/store -> UpdateStore
+let @y = 'f/x~<esc>j'
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+"" Map \b to togglource ~/ideavimrc
+"map \b <Action>(ToggleLineBreakpoint)
